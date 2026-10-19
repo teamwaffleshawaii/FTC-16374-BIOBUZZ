@@ -8,14 +8,13 @@
 
 package org.firstinspires.ftc.teamcode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
-@TeleOp(name = "Field Centric Drive")
-public class Template3HolonomicDriveFieldCentric extends LinearOpMode {
+@TeleOp
+public class TeleOperated extends LinearOpMode {
 
     double reset_angle = 0;
     Actuators actuator = new Actuators();
