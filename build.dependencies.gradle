@@ -1,7 +1,9 @@
 repositories {
     mavenCentral()
     google() // Needed for androidx
-    flatDir { dirs 'libs','/Users/olindarcy/StudioProjects/FTC-16374-BIOBUZZ/libs' }
+    // Find the committed NavX libraries inside this project on any computer.
+    // rootProject keeps this path relative to the repository, not a module or username.
+    flatDir { dirs rootProject.file('libs') }
 }
 
 dependencies {
