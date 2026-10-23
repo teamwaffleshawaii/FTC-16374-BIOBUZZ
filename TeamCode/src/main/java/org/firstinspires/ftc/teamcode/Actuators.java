@@ -19,7 +19,7 @@ public class Actuators {
     public DcMotor rightFront;
     public DcMotor leftBack;
     public DcMotor rightBack;
-  //  public DcMotor liftMotor;
+
     public DcMotor intakeMotor;
 
     public DcMotor shooterMotor;
@@ -34,22 +34,25 @@ public class Actuators {
         rightFront = hwMap.get(DcMotor.class, "rightFront");
         leftBack = hwMap.get(DcMotor.class, "leftBack");
         rightBack = hwMap.get(DcMotor.class, "rightBack");
-      //  liftMotor = hwMap.get(DcMotor.class, "liftMotor");
+
         intakeMotor = hwMap.get(DcMotor.class, "intakeMotor");
+        shooterMotor= hwMap.get(DcMotor.class, "shooterMotor");
         //TODO: Setup motor mode when power is Zero
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
-        //liftMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT); //or BRAKE
+
+        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);//or BRAKE
         //TODO: If need to change motor direction
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE); //or FORWARD
         rightFront.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
-        leftBack.setDirection(DcMotorSimple.Direction.REVERSE); //or FORWARD
+        leftBack.setDirection(DcMotorSimple.Direction.FORWARD); //or FORWARD
         rightBack.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
       //  liftMotor.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
         intakeMotor.setDirection(DcMotorSimple.Direction.REVERSE); //or FORWARD
+       shooterMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //TODO: Put servo hardware here, don't forget to rename deviceNames to match yours
       //  servoRegular = hwMap.get(Servo.class, "servoRegular");
@@ -88,12 +91,12 @@ public class Actuators {
     }
 
     //TODO: Sample class for controlling a motor using encoders with power (More accurate, useful for Auto)
-    public void liftMotorEncoder(double rotation, double power) {
-       // liftMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-     //   liftMotor.setTargetPosition((int) (537.7 * rotation));
-      //  liftMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-    //    liftMotor.setPower(power);
-    }
+   // public void setShooterMotor(double rotation, double power) {
+   // shooterMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    //shooterMotor.setTargetPosition((int) (537.7 * rotation));
+    //shooterMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+     //shooterMotor.setPower(power);
+    //}
 
     //TODO: Sample classes for powering a servo
    // public void setServoPosition(double position) {
