@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name = "Tank Drive Autonomous")
+@Autonomous(name = "1")
 public class aut01 extends LinearOpMode {
     Actuators actuator = new Actuators();
 
@@ -16,9 +16,9 @@ public class aut01 extends LinearOpMode {
         if (opModeIsActive() && !isStopRequested()) {
             runtime.reset(); while (opModeIsActive() && !isStopRequested()) {
                 if (runtime.seconds() > 0 && runtime.seconds() < 15) {
-                    actuator.shooterMotor.setPower(-0.75);
+                    actuator.launch(1300);
                 } else {
-                    actuator.shooterMotor.setPower(0);
+                    actuator.launch(0);
                 }
                 if (runtime.seconds() > 4 && runtime.seconds() < 15) {
                     actuator.intakeMotor.setPower(0.7);

@@ -6,6 +6,7 @@ package org.firstinspires.ftc.teamcode;
 
 //import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 //import com.qualcomm.robotcore.hardware.Servo;
@@ -22,7 +23,7 @@ public class Actuators {
 
     public DcMotor intakeMotor;
 
-    public DcMotor shooterMotor;
+    public DcMotorEx shooterMotor;
 
     // TODO: If using servos or continuous servos, add them here (up to 12)
     //public Servo servoRegular;
@@ -36,7 +37,7 @@ public class Actuators {
         rightBack = hwMap.get(DcMotor.class, "rightBack");
 
         intakeMotor = hwMap.get(DcMotor.class, "intakeMotor");
-        shooterMotor= hwMap.get(DcMotor.class, "shooterMotor");
+        shooterMotor= hwMap.get(DcMotorEx.class, "shooterMotor");
         //TODO: Setup motor mode when power is Zero
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
@@ -80,6 +81,11 @@ public class Actuators {
     public void rightBack(double power) {
         rightBack.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightBack.setPower(power);
+    }
+
+    public void launch(double velocity) {
+        shooterMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        shooterMotor.setVelocity(velocity);
     }
     public void intakeMotor(double power) {
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);

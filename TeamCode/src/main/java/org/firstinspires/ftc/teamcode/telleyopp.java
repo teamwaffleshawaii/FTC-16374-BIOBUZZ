@@ -109,35 +109,31 @@ public class telleyopp extends LinearOpMode {
   public void intake() {
       if (gamepad2.x) {
           actuator.intakeMotor.setPower(1);
-          actuator.shooterMotor.setPower(0.2);
+
       }else if (gamepad2.right_bumper) {
           actuator.intakeMotor.setPower(-0.5);
       }
       else if(gamepad2.a){
-          actuator.intakeMotor.setPower(0.7);
+          actuator.intakeMotor.setPower(1);
       }
       else if (gamepad2.y) {
           actuator.intakeMotor.setPower(0.0);
       }
       else {
-          actuator.intakeMotor.setPower(0.3);
+          actuator.intakeMotor.setPower(0.7);
       }
 
   }
 
     public void Shooter() {
         if (gamepad2.dpad_up) {
-            actuator.shooterMotor.setPower(-0.75);
-        }else if (gamepad2.dpad_left) {
-            actuator.shooterMotor.setPower(0.3);
+            actuator.launch(-1300);
         }
-
-        else if (gamepad2.dpad_down) {
-            actuator.shooterMotor.setPower(-0.2);
-        } else  {
-            actuator.shooterMotor.setPower(0.15);
-
-
+        else if (gamepad2.dpad_left) {
+            actuator.launch(300);
+        }
+        else {
+            actuator.launch(200);
         }
         // Example: Core Hex or REV Motor with a known ticks-per-revolution value (e.g., 28 ticks/rev on motor shaft)
       //  double ticksPerRev = 28.0;
