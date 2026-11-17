@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "1")
 public class aut01 extends LinearOpMode {
     Actuators actuator = new Actuators();
+    private final shooter shooter =new shooter();
 
     @Override
     public void runOpMode() {
@@ -16,9 +17,9 @@ public class aut01 extends LinearOpMode {
         if (opModeIsActive() && !isStopRequested()) {
             runtime.reset(); while (opModeIsActive() && !isStopRequested()) {
                 if (runtime.seconds() > 0 && runtime.seconds() < 15) {
-                    actuator.launch(1300);
+       shooter.shooterMotor.setVelocity(1300);
                 } else {
-                    actuator.launch(0);
+                 shooter.shooterMotor.setVelocity(0);
                 }
                 if (runtime.seconds() > 4 && runtime.seconds() < 15) {
                     actuator.intakeMotor.setPower(0.7);

@@ -37,7 +37,7 @@ public class shooter {
 
         public void init(HardwareMap hardwareMap) {
 
-            shooterMotor=hardwareMap.get(DcMotorEx.class," shooterMotor");
+            shooterMotor=hardwareMap.get(DcMotorEx.class,"shooterMotor");
 
             shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
             shooterMotor.setDirection(DcMotorSimple.Direction.FORWARD);
