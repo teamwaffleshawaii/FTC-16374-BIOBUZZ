@@ -21,6 +21,8 @@ public class telleyopp extends LinearOpMode {
     double reset_angle = 0;
     Actuators actuator = new Actuators();
     Sensors sensor = new Sensors();
+
+    private final shooter shooter =new shooter();
     private int lastPosition = 0;
     private double lastTime = 0;
     private ElapsedTime timer = new ElapsedTime();
@@ -30,8 +32,8 @@ public class telleyopp extends LinearOpMode {
         actuator.init(hardwareMap);
         sensor.init(hardwareMap);
         timer.reset();
-        lastPosition = actuator.shooterMotor.getCurrentPosition();
-        lastTime = timer.seconds();
+ shooter.init(hardwareMap);
+
 
         waitForStart();
 
@@ -41,6 +43,7 @@ public class telleyopp extends LinearOpMode {
                 resetAngle();
                 intake();
                 Shooter();
+                transfer();
 
 
                 telemetry.update();
@@ -49,10 +52,10 @@ public class telleyopp extends LinearOpMode {
     }
 
     public void drive() {
-        double Protate = - gamepad1.right_stick_x;
-        double stick_x = - gamepad1.left_stick_x * Math.sqrt(Math.pow(1-Math.abs(Protate), 2) );
+        double Protate = -gamepad1.right_stick_x;
+        double stick_x = -gamepad1.left_stick_x * Math.sqrt(Math.pow(1 - Math.abs(Protate), 2));
         //Accounts for Protate when limiting magnitude to be less than 1
-        double stick_y = - gamepad1.left_stick_y * Math.sqrt(Math.pow(1-Math.abs(Protate), 2) );
+        double stick_y = -gamepad1.left_stick_y * Math.sqrt(Math.pow(1 - Math.abs(Protate), 2));
         double theta = 0;
         double Px = 0;
         double Py = 0;
@@ -67,21 +70,19 @@ public class telleyopp extends LinearOpMode {
         }
         gyroAngle = -1 * gyroAngle;
 
-        if(gamepad1.right_bumper){ //Disables gyro, sets to -Math.PI/2 so front is defined correctly.
-            gyroAngle = -Math.PI/2;
+        if (gamepad1.right_bumper) { //Disables gyro, sets to -Math.PI/2 so front is defined correctly.
+            gyroAngle = -Math.PI / 2;
         }
 
         //Linear directions in case you want to do straight lines.
-        if(gamepad1.dpad_right){
+        if (gamepad1.dpad_right) {
             stick_x = 0.5;
-        }
-        else if(gamepad1.dpad_left){
+        } else if (gamepad1.dpad_left) {
             stick_x = -0.5;
         }
-        if(gamepad1.dpad_up){
+        if (gamepad1.dpad_up) {
             stick_y = -0.5;
-        }
-        else if(gamepad1.dpad_down){
+        } else if (gamepad1.dpad_down) {
             stick_y = 0.5;
         }
 
@@ -93,7 +94,7 @@ public class telleyopp extends LinearOpMode {
 
         telemetry.addData("Stick_X", stick_x);
         telemetry.addData("Stick_Y", stick_y);
-        telemetry.addData("Magnitude",  Math.sqrt(Math.pow(stick_x, 2) + Math.pow(stick_y, 2)));
+        telemetry.addData("Magnitude", Math.sqrt(Math.pow(stick_x, 2) + Math.pow(stick_y, 2)));
         telemetry.addData("Motor Front Left", Py - Protate);
         telemetry.addData("Motor Front Right", Px + Protate);
         telemetry.addData("Motor Back Left", Px - Protate);
@@ -106,35 +107,47 @@ public class telleyopp extends LinearOpMode {
         actuator.rightFront((Px + Protate));
 
     }
-  public void intake() {
-      if (gamepad2.x) {
-          actuator.intakeMotor.setPower(1);
 
-      }else if (gamepad2.right_bumper) {
-          actuator.intakeMotor.setPower(-0.5);
-      }
-      else if(gamepad2.a){
-          actuator.intakeMotor.setPower(1);
-      }
-      else if (gamepad2.y) {
-          actuator.intakeMotor.setPower(0.0);
-      }
-      else {
-          actuator.intakeMotor.setPower(0.7);
-      }
+    public void intake() {
+        if (gamepad2.x) {
+            actuator.intakeMotor.setPower(1);
 
-  }
 
-    public void Shooter() {
-        if (gamepad2.dpad_up) {
-            actuator.launch(-1300);
-        }
-        else if (gamepad2.dpad_left) {
-            actuator.launch(300);
+        } else if (gamepad2.a) {
+            actuator.intakeMotor.setPower(1);
+
         }
         else {
-            actuator.launch(200);
+            actuator.transferMotor.setPower(0.7);
         }
+
+    }
+
+  public void transfer(){
+
+        if(gamepad2.a){
+         actuator.transferMotor.setPower(1);
+
+
+        }
+        else if (gamepad2.b){
+            actuator.transferMotor.setPower(0);
+
+        }
+        else {
+            actuator.transferMotor.setPower(-0.6);
+        }
+  }
+    public void Shooter() {
+        if (gamepad2.dpad_up) {
+            shooter.shooterMotor.setVelocity();
+
+        }
+        else if (gamepad2.dpad_down) {
+
+        }
+     ;
+
         // Example: Core Hex or REV Motor with a known ticks-per-revolution value (e.g., 28 ticks/rev on motor shaft)
       //  double ticksPerRev = 28.0;
       //  double velocityTicksPerSec = actuator.shooterMotor.get();
