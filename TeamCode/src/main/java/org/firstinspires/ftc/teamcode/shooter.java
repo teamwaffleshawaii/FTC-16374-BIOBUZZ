@@ -26,10 +26,10 @@ public class shooter {
         // our DC motor
         public DcMotorEx shooterMotor;
 
-        public static final double NEW_P = 2.5;
-        public static final double NEW_I = 0.1;
-        public static final double NEW_D = 0.2;
-        public static final double NEW_F = 0.5;
+        public static final double NEW_P = 0;
+        public static final double NEW_I = 0;
+        public static final double NEW_D = 0;
+        public static final double NEW_F = 0;
 
 
         // These values are for illustration only; they must be set

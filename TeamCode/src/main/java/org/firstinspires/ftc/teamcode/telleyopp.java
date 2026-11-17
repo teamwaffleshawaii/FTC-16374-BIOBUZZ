@@ -140,7 +140,7 @@ public class telleyopp extends LinearOpMode {
   }
     public void Shooter() {
         if (gamepad2.dpad_up) {
-            shooter.shooterMotor.setVelocity(1500);
+            shooter.shooterMotor.setVelocity(1300);
 
         }
         else if (gamepad2.dpad_down) {
