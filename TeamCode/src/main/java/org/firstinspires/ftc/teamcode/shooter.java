@@ -26,10 +26,10 @@ public class shooter {
         // our DC motor
         public DcMotorEx shooterMotor;
 
-        public static final double NEW_P = 0;
+        public static final double NEW_P = 25;
         public static final double NEW_I = 0;
         public static final double NEW_D = 0;
-        public static final double NEW_F = 0;
+        public static final double NEW_F = 10;
 
 
         // These values are for illustration only; they must be set
@@ -44,7 +44,7 @@ public class shooter {
             shooterMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
             PIDFCoefficients pidfOrig = shooterMotor.getPIDFCoefficients( DcMotor.RunMode.RUN_USING_ENCODER);
 
-            PIDFCoefficients pidfNew = new PIDFCoefficients(NEW_P, NEW_I, NEW_D, NEW_F);
+            PIDFCoefficients pidfNew = new PIDFCoefficients(NEW_P, NEW_I, NEW_D,NEW_F);
           shooterMotor.setPIDFCoefficients (DcMotor.RunMode.RUN_USING_ENCODER, pidfNew);
 
             // Re-read coefficients and verify change.

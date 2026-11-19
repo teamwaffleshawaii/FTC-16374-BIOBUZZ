@@ -21,6 +21,8 @@ public class telleyopp extends LinearOpMode {
     double reset_angle = 0;
     Actuators actuator = new Actuators();
     Sensors sensor = new Sensors();
+    intake intake = new intake();
+    transfer transfer = new transfer();
 
     private final shooter shooter =new shooter();
     private int lastPosition = 0;
@@ -31,8 +33,10 @@ public class telleyopp extends LinearOpMode {
     public void runOpMode() {
         actuator.init(hardwareMap);
         sensor.init(hardwareMap);
+        intake.init (hardwareMap);
         timer.reset();
  shooter.init(hardwareMap);
+ transfer.init (hardwareMap);
 
 
         waitForStart();
@@ -45,7 +49,7 @@ public class telleyopp extends LinearOpMode {
                 Shooter();
                 transfer();
 
-
+                telemetry.addData("velocity", shooter.shooterMotor.getVelocity());
                 telemetry.update();
             }
         }
@@ -110,15 +114,19 @@ public class telleyopp extends LinearOpMode {
 
     public void intake() {
         if (gamepad2.x) {
-            actuator.intakeMotor.setPower(1);
+            intake.intakeMotor.setPower(1);
 
 
         } else if (gamepad2.a) {
-            actuator.intakeMotor.setPower(1);
+            intake.intakeMotor.setPower(1);
 
         }
+        else if(gamepad2.b){
+
+            intake.intakeMotor.setPower(0);
+        }
         else {
-            actuator.intakeMotor.setPower(0.7);
+            intake.intakeMotor.setPower(0.7);
         }
 
     }
@@ -126,21 +134,21 @@ public class telleyopp extends LinearOpMode {
   public void transfer(){
 
         if(gamepad2.a){
-         actuator.transferMotor.setPower(1);
+         transfer.transferMotor.setPower(1);
 
 
         }
         else if (gamepad2.b){
-            actuator.transferMotor.setPower(0);
+        transfer.transferMotor.setPower(0);
 
         }
         else {
-            actuator.transferMotor.setPower(-0.6);
+         transfer.transferMotor.setPower(-0.6);
         }
   }
     public void Shooter() {
         if (gamepad2.dpad_up) {
-            shooter.shooterMotor.setVelocity(1300);
+            shooter.shooterMotor.setVelocity(1200);
 
         }
         else if (gamepad2.dpad_down) {

@@ -21,9 +21,9 @@ public class Actuators {
     public DcMotor leftBack;
     public DcMotor rightBack;
 
-    public DcMotor intakeMotor;
+   // public DcMotor intakeMotor;
 
-    public DcMotor   transferMotor;
+  //  public DcMotor   transferMotor;
 
    // public DcMotorEx shooterMotor;
 
@@ -38,27 +38,27 @@ public class Actuators {
         leftBack = hwMap.get(DcMotor.class, "leftBack");
         rightBack = hwMap.get(DcMotor.class, "rightBack");
 
-        intakeMotor = hwMap.get(DcMotor.class, "intakeMotor");
+        //intakeMotor = hwMap.get(DcMotor.class, "intakeMotor");
         //shooterMotor= hwMap.get(DcMotorEx.class, "shooterMotor");
-        transferMotor=hwMap.get(DcMotor.class,"transferMotor");
+        //transferMotor=hwMap.get(DcMotor.class,"transferMotor");
         //TODO: Setup motor mode when power is Zero
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE); //or FLOAT
 
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+      //  intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
        // shooterMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);//or BRAKE
-        transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+      //  transferMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         //TODO: If need to change motor direction
         leftFront.setDirection(DcMotorSimple.Direction.REVERSE); //or FORWARD
         rightFront.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
         leftBack.setDirection(DcMotorSimple.Direction.FORWARD); //or FORWARD
         rightBack.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
       //  liftMotor.setDirection(DcMotorSimple.Direction.FORWARD); //or REVERSE
-        intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD); //or FORWARD
+      //  intakeMotor.setDirection(DcMotorSimple.Direction.FORWARD); //or FORWARD
       // shooterMotor.setDirection(DcMotorSimple.Direction.FORWARD);
-       transferMotor.setDirection(DcMotorSimple.Direction.FORWARD);
+    //   transferMotor.setDirection(DcMotorSimple.Direction.FORWARD);
 
         //TODO: Put servo hardware here, don't forget to rename deviceNames to match yours
       //  servoRegular = hwMap.get(Servo.class, "servoRegular");
@@ -92,10 +92,10 @@ public class Actuators {
    //     shooterMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     //    shooterMotor.setVelocity(velocity);
   //  }
-    public void intakeMotor(double power) {
+  /*  public void intakeMotor(double power) {
         intakeMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         intakeMotor.setPower(power);
-    }
+    } */
     public void liftMotor(double power) {
       //  liftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
      //   liftMotor.setPower(power);
